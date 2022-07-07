@@ -3,13 +3,11 @@ const app = express();
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const helmet = require("helmet");
-const morgan = require("morgan");
-const fs = require("fs");
-const path = require("path");
 const mongoose = require("mongoose");
 
 const send_formatted_response_handler = require("./API/helper/HTTP_response_handler");
 
+const baseRoute = require("./API/routes/baseRoute");
 const noticeRoutes = require("./API/routes/admin/notice");
 const userRoutes = require("./API/routes/user");
 const studentRoutes = require("./API/routes/student/student");
@@ -42,7 +40,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(helmet());
-
+app.use("/", baseRoute);
 app.use("/notice", noticeRoutes);
 app.use("/user", userRoutes);
 app.use("/student", studentRoutes);
