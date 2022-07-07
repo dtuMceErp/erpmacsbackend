@@ -1,3 +1,5 @@
+
+const stream = require('stream');
 const fs= require('fs');
 const readline = require('readline');
 const { google } = require('googleapis');
@@ -12,18 +14,22 @@ const auth = new google.auth.GoogleAuth({
 });
 
 const uploadFile= (req, res, next)=> {
+    // console.log(req.files);
+    const bufferStream = new stream.PassThrough();
+    bufferStream.end(req.files[0].buffer);
+    console.log(bufferStream);
     const drive = google.drive({
         version: 'v3',
         auth
     });
     const fileMetadata = {
-        'name': req.file.originalname,
+        'name': req.files[0].originalname,
         'parents': [process.env.GOOGLE_DRIVE_PARENT_FOLDER_ID],
-        'mimeType': req.file.mimetype,
+        'mimeType': req.files[0].mimetype,
     };
     const media = {
-        mimeType: req.file.mimetype,
-        body: fs.createReadStream(req.file.path),
+        mimeType: req.files[0].mimetype,
+        body: bufferStream,
     };
     drive.files.create({
         resource: fileMetadata,
