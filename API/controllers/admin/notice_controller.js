@@ -38,7 +38,7 @@ exports.create_new_notice = (req, res, next) => {
     _id: new mongoose.Types.ObjectId(),
     title: req.body.title,
     description: req.body.description,
-    url: "req.file.path",
+    url: req.body.url,
     important: req.body.important,
     tags: req.body.tags,
     category: req.body.category,

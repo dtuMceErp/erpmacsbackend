@@ -14,10 +14,8 @@ const auth = new google.auth.GoogleAuth({
 });
 
 const uploadFile= (req, res, next)=> {
-    // console.log(req.files);
     const bufferStream = new stream.PassThrough();
     bufferStream.end(req.files[0].buffer);
-    console.log(bufferStream);
     const drive = google.drive({
         version: 'v3',
         auth
@@ -34,9 +32,10 @@ const uploadFile= (req, res, next)=> {
     drive.files.create({
         resource: fileMetadata,
         media: media,
-        fields: 'webContentLink',
+        fields: 'id',
     }).then((result)=> {
-        console.log(result);
+        req.body.url= `https://drive.google.com/open?id=${result.data.id}`;
+        // console.log(result.data.id);
         return next();
     }
     ).catch((err)=> {
