@@ -1,0 +1,54 @@
+Create User
+{ 
+    "name": "samyak",
+   "email": "samyakjain_2k19mc114@dtu.ac.in",
+   "password": "test",
+   "role": "Student",
+   "roll_no": "2K19/MC/114"
+}
+
+Create Project
+{ 
+   "title": "This is a test title",
+   "description": "This is a test description",
+   "startDate": "10-12-2001",
+   "isOngoing": true,
+   "projectType": "Major",
+   "SupportURL": "www.google.com"
+}
+
+Create Research
+{ 
+   "title": "This is a test title 2",
+   "description": "This is a test description",
+   "publicationDate": "10-12-2001",
+   "publisher": "This is a test publisher",
+   "SupportURL": "https://www.google.com/"
+}
+
+Create experience
+{ 
+   "title": "This is a test title 3",
+   "company": "test company",
+   "description": "This is a test description",
+   "startDate": "10-12-2001",
+   "endDate": "03-25-2012",
+   "employmentType": "Full-time",
+   "SupportURL": "https://www.google.com/"
+}
+
+Create certification
+{ 
+   "title": "This is a test title 3",
+   "issuingOrganisation": "test organisation",
+   "issueDate": "03-25-2012",
+   "SupportURL": "https://www.google.com/"
+}
+
+Create Achievement
+{ 
+   "title": "This is a test title 3",
+   "description": "this is a test description",
+   "achievementType": "Music1",
+   "SupportURL": "https://www.google.com/"
+}
