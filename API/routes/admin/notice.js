@@ -14,4 +14,6 @@ router.post(
   notice_controller.create_new_notice,
 );
 
+router.delete("/delete", notice_controller.delete_using_id);
+
 module.exports = router;

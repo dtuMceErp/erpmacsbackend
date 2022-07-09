@@ -6,7 +6,7 @@ const { uploadFile } = require("../../services/googleDriveService");
 
 exports.get_all = (req, res, next) => {
   Documents.find()
-    .select("title description url tags category").sort({createdAt:-1})
+    .select("title description url tags category serialNo").sort({createdAt:-1})
     .exec()
     .then((docs) => {
       const response = {
@@ -14,6 +14,7 @@ exports.get_all = (req, res, next) => {
         documents: docs.map((doc) => {
           return {
             _id: doc._id,
+            serialNo: doc.serialNo,
             title: doc.title,
             description: doc.description,
             url: doc.url,
@@ -36,6 +37,7 @@ exports.get_all = (req, res, next) => {
 exports.create_new_notice = (req, res, next) => {
   const document = new Documents({
     _id: new mongoose.Types.ObjectId(),
+    serialNo: req.body.serialNo,
     title: req.body.title,
     description: req.body.description,
     url: req.body.url,
@@ -65,3 +67,26 @@ exports.create_new_notice = (req, res, next) => {
         );
     });
 };
+
+exports.delete_using_id = (req, res, next) => {
+  Documents.findByIdAndDelete(req.query.id)
+    .exec()
+    .then((result) => {
+      res
+        .status(200)
+        .json(
+          send_formatted_response_handler(
+            result,
+            true,
+            "Document deleted successfully"
+          )
+        );
+    })
+    .catch((err) => {
+      res
+        .status(500)
+        .json(
+          send_formatted_response_handler(err, false, "Something went wrong")
+        );
+    });
+}

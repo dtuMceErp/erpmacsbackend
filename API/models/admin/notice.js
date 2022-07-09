@@ -3,6 +3,12 @@ const mongoose = require("mongoose"),
 
 const documentSchema = new Schema(
   {
+    serialNo: {
+      type: String,
+      required: true,
+      unique: true,
+      default: "None",
+    },
     title: {
       type: String,
       required: true,
