@@ -34,8 +34,7 @@ const uploadFile= (req, res, next)=> {
         media: media,
         fields: 'id',
     }).then((result)=> {
-        req.body.url= `https://drive.google.com/open?id=${result.data.id}`;
-        // console.log(result.data.id);
+        req.body.url= result.data.id;
         return next();
     }
     ).catch((err)=> {

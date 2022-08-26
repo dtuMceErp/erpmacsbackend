@@ -6,7 +6,7 @@ const { uploadFile } = require("../../services/googleDriveService");
 
 exports.get_all = (req, res, next) => {
   Documents.find()
-    .select("title description url tags category serialNo").sort({createdAt:-1})
+    .select("title description downloadUrl url tags category serialNo").sort({createdAt:-1})
     .exec()
     .then((docs) => {
       const response = {
@@ -18,6 +18,7 @@ exports.get_all = (req, res, next) => {
             title: doc.title,
             description: doc.description,
             url: doc.url,
+            downloadUrl: doc.downloadUrl,
             tags: doc.tags,
             category: doc.category,
           };
@@ -40,7 +41,8 @@ exports.create_new_notice = (req, res, next) => {
     serialNo: req.body.serialNo,
     title: req.body.title,
     description: req.body.description,
-    url: req.body.url,
+    downloadUrl: `https://drive.google.com/uc?export=download&id=${req.body.url}`,
+    url: `https://drive.google.com/open?id=${req.body.url}`,
     important: req.body.important,
     tags: req.body.tags,
     category: req.body.category,

@@ -27,6 +27,10 @@ const documentSchema = new Schema(
       type: String,
       required: true,
     },
+    downloadUrl:{
+      type: String,
+      required : true,
+    },
     important: {
       type: Boolean,
       default: false,
