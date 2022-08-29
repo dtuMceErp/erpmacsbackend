@@ -45,7 +45,7 @@ const documentSchema = new Schema(
         "DEPTARTMENT",
         "STAFF",
         "FACULTY",
-        "OTHER",
+        "OTHERS",
       ],
       default: "DEPTARTMENT",
     },

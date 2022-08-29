@@ -6,7 +6,7 @@ const { uploadFile } = require("../../services/googleDriveService");
 
 exports.get_all = (req, res, next) => {
   Documents.find()
-    .select("title description downloadUrl url tags category serialNo").sort({createdAt:-1})
+    .select("title description downloadUrl url tags category serialNo createdAt ").sort({createdAt:-1})
     .exec()
     .then((docs) => {
       const response = {
@@ -21,6 +21,7 @@ exports.get_all = (req, res, next) => {
             downloadUrl: doc.downloadUrl,
             tags: doc.tags,
             category: doc.category,
+            createdAt: doc.createdAt,
           };
         }),
       };
