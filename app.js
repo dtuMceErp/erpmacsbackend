@@ -27,6 +27,8 @@ mongoose.connect(process.env.DEV_DB_URI, {
   useUnifiedTopology: true,
   useFindAndModify: false,
   useCreateIndex: true,
+}, ()=>{
+  console.log("DB Connected Successfully.")
 });
 
 app.use("/uploads", express.static("uploads"));

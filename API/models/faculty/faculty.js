@@ -11,7 +11,9 @@ const Education = new Schema({
     required: true,
   },
   degree: { type: String },
-  isOngoing: { type: Boolean },
+  isOngoing: { type: Boolean , 
+    default: false
+  },
   passingYear: { type: String },
   specialization: { type: String },
 });
