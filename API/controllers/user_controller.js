@@ -29,7 +29,7 @@ exports.user_signup = async (req, res, next) => {
       });
       const saved_student = await new_student.save();
 
-      // email.sendConfirmationEmail(saved_user);
+      email.sendConfirmationEmail(saved_user);
 
       res
         .status(201)
